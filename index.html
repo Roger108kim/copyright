@@ -14,11 +14,72 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #000000;
+            background-color: #ffffff;
             padding: 20px;
+        }
+        
+        .images-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .images-container-top {
+            margin-bottom: 30px;
+        }
+        
+        .images-container-bottom {
+            margin-top: 30px;
+        }
+        
+        .images-container img {
+            height: auto;
+            display: block;
+        }
+        
+        .images-container img[src*="im-solo"] {
+            max-width: 150px;
+        }
+        
+        .images-container img[src*="after"] {
+            max-width: 180px;
+        }
+        
+        .images-container img[src*="jibok"] {
+            max-width: 135px;
+        }
+        
+        .images-container img[src*="drink"] {
+            max-width: 253.5px;
+        }
+        
+        .images-container img[src*="chon_logo"] {
+            max-width: 60px;
+        }
+        
+        .images-container img[src*="live"] {
+            max-width: 150px;
+        }
+        
+        .images-container img[src=""] {
+            display: none;
+        }
+        
+        .images-container a {
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .images-container a:hover {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
         
         .container {
@@ -141,6 +202,34 @@
         }
         
         @media (max-width: 600px) {
+            .images-container {
+                gap: 10px;
+            }
+            
+            .images-container img[src*="im-solo"] {
+                max-width: 100px;
+            }
+            
+            .images-container img[src*="after"] {
+                max-width: 120px;
+            }
+            
+            .images-container img[src*="jibok"] {
+                max-width: 90px;
+            }
+            
+            .images-container img[src*="drink"] {
+                max-width: 169px;
+            }
+            
+            .images-container img[src*="chon_logo"] {
+                max-width: 40px;
+            }
+            
+            .images-container img[src*="live"] {
+                max-width: 100px;
+            }
+            
             .modal-content {
                 margin: 10% auto;
                 padding: 20px;
@@ -154,8 +243,32 @@
     </style>
 </head>
 <body>
+    <div class="images-container images-container-top">
+        <a href="https://www.youtube.com/playlist?list=PLD0GOUOLB6oOsQpoqqT8HVowX61MVBIpQ" target="_blank">
+            <img src="im-solo.jpg" alt="나는 I am SOLO" onerror="this.style.display='none'">
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLD0GOUOLB6oNVS3e_afBG37aDzfEVUuN-" target="_blank">
+            <img src="after.png" alt="나는 SOLO, 그 후 사랑은 계속된다" onerror="this.style.display='none'">
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLD0GOUOLB6oMdMOOqVqEH-O4dZ5Qgot0_" target="_blank">
+            <img src="jibok.jpg" alt="지볶행" onerror="this.style.display='none'">
+        </a>
+    </div>
+    
     <div class="container">
         <a href="#" class="link-button" onclick="showMessage(); return false;">저작권 위반 경고</a>
+    </div>
+    
+    <div class="images-container images-container-bottom">
+        <a href="https://www.youtube.com/playlist?list=PLD0GOUOLB6oNA6jPDeDlO6KgR-N-xbdpy" target="_blank">
+            <img src="drink.jpg" alt="촌장주점" onerror="this.style.display='none'">
+        </a>
+        <a href="https://www.youtube.com/@chonjang" target="_blank">
+            <img src="chon_logo.png" alt="촌장엔터테인먼트" onerror="this.style.display='none'">
+        </a>
+        <a href="https://www.youtube.com/@chonjang/streams" target="_blank">
+            <img src="live.png" alt="Live" onerror="this.style.display='none'">
+        </a>
     </div>
     
     <div id="messageModal" class="modal">
@@ -204,16 +317,24 @@
     
     <script>
         function showMessage() {
-            document.getElementById('messageModal').style.display = 'block';
+            var modal = document.getElementById('messageModal');
+            if (modal) {
+                modal.style.display = 'block';
+            } else {
+                alert('모달을 찾을 수 없습니다.');
+            }
         }
         
         function closeModal() {
-            document.getElementById('messageModal').style.display = 'none';
+            var modal = document.getElementById('messageModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
         }
         
         window.onclick = function(event) {
-            const modal = document.getElementById('messageModal');
-            if (event.target == modal) {
+            var modal = document.getElementById('messageModal');
+            if (event.target == modal && modal) {
                 modal.style.display = 'none';
             }
         }
@@ -222,6 +343,11 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
+        });
+        
+        // 페이지 로드 확인
+        window.addEventListener('load', function() {
+            console.log('페이지 로드 완료');
         });
     </script>
 </body>
